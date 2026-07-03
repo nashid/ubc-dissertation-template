@@ -1,0 +1,28 @@
+\section{Evaluation}
+\label{sec:example-one-evaluation}
+
+Describe the experimental setup and answer each research question.
+
+\header{RQ1: Effectiveness}
+Summarize the results for the first research question.
+\autoref{tab:example-one-results} shows a table typeset with the
+\latexpackage{booktabs} package; the \verb|\cmark| and \verb|\xmark|
+macros (defined in \file{main.tex}) render checkmarks and crosses.
+
+\begin{table}[t]
+  \centering
+  \caption{Example results table.  Replace with your own results.}
+  \label{tab:example-one-results}
+  \begin{tabular}{lrrc}
+    \toprule
+    Technique & Solved & Accuracy (\%) & Open Source \\
+    \midrule
+    \toolone{} (ours) & 128 & 84.2 & \cmark \\
+    Baseline A        &  96 & 63.1 & \cmark \\
+    Baseline B        &  74 & 48.7 & \xmark \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\header{RQ2: Comparison with the state of the art}
+Summarize the results for the second research question.

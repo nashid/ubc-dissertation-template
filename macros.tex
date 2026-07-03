@@ -1,0 +1,134 @@
+% This file provides examples of some useful macros for typesetting
+% dissertations.  None of the macros defined here are necessary beyond
+% for the template documentation, so feel free to change, remove, and add
+% your own definitions.
+%
+% We recommend that you define macros to separate the semantics
+% of the things you write from how they are presented.  For example,
+% you'll see definitions below for a macro \file{}: by using
+% \file{} consistently in the text, we can change how filenames
+% are typeset simply by changing the definition of \file{} in
+% this file.
+%
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = main.tex
+
+\newcommand{\NA}{\textsc{n/a}}	% for "not applicable"
+\newcommand{\eg}{e.g.,\ }	% proper form of examples (\eg a, b, c)
+\newcommand{\ie}{i.e.,\ }	% proper form for that is (\ie a, b, c)
+\newcommand{\etal}{\emph{et al}}
+
+% Some useful macros for typesetting terms.
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\class}[1]{\texttt{#1}}
+\newcommand{\latexpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/#1}{\texttt{#1}}}
+\newcommand{\latexmiscpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/misc/#1.sty}{\texttt{#1}}}
+\newcommand{\env}[1]{\texttt{#1}}
+\newcommand{\BibTeX}{Bib\TeX}
+
+% Define a command \doi{} to typeset a digital object identifier (DOI).
+% Note: if the following definition raise an error, then you likely
+% have an ancient version of url.sty.  Either find a more recent version
+% (3.1 or later work fine) and simply copy it into this directory,  or
+% comment out the following two lines and uncomment the third.
+\DeclareUrlCommand\DOI{}
+\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\DOI{doi:#1}}}
+%\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{doi:#1}}
+
+% Useful macro to reference an online document with a hyperlink
+% as well with the URL explicitly listed in a footnote
+% #1: the URL
+% #2: the anchoring text
+\newcommand{\webref}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+
+% epigraph is a nice environment for typesetting quotations
+\makeatletter
+\newenvironment{epigraph}{%
+	\begin{flushright}
+	\begin{minipage}{\columnwidth-0.75in}
+	\begin{flushright}
+	\@ifundefined{singlespacing}{}{\singlespacing}%
+    }{
+	\end{flushright}
+	\end{minipage}
+	\end{flushright}}
+\makeatother
+
+% \FIXME{} is a useful macro for noting things needing to be changed.
+% The following definition will also output a warning to the console
+\newcommand{\FIXME}[1]{\typeout{**FIXME** #1}\textbf{[FIXME: #1]}}
+
+% Author comment system: margin-style notes for draft feedback from
+% you, your advisor, and collaborators.  Set showcomments to false
+% before final submission to hide all notes at once.
+\usepackage{ifthen}
+\newboolean{showcomments}
+\setboolean{showcomments}{true}
+\ifthenelse{\boolean{showcomments}}
+{
+	\definecolor{myyellow}{RGB}{255, 228, 26}
+	\definecolor{myblue}{RGB}{50, 50, 220}
+	\newcommand{\nb}[2]{
+		{\sf
+			\fcolorbox{myyellow}{yellow}{\scriptsize\textbf{#1}}%
+			$\blacktriangleright$%
+			{\color{myblue}\fontsize{7pt}{8pt}\selectfont\textbf{#2}}%
+		}%
+	}
+}
+{
+	\newcommand{\nb}[2]{}
+}
+
+% Define one shortcut per author/reviewer, e.g.:
+%   \supervisor{Have you considered X?}  produces a highlighted note
+% (note: \advisor is already taken by ubcdiss.cls)
+\newcommand{\supervisor}[1]{\nb{Supervisor}{#1}}
+\newcommand{\me}[1]{\nb{Me}{#1}}
+
+% Tool/system names used across multiple chapters should be defined
+% here (rather than in individual chapter files) to avoid "already
+% defined" errors.  For example:
+% \newcommand{\mytool}{\textsc{MyTool}\xspace}
+
+% Research questions list environment (usable across multiple chapters)
+\newlist{researchquestions}{enumerate}{1}
+\setlist[researchquestions]{label*=\textbf{RQ\arabic*}}
+
+% ===== CHAPTER-PREFIXED RESEARCH QUESTION NUMBERING SYSTEM =====
+% RQ formatting that respects UBC thesis margins.
+% Automatically uses the chapter number (RQ2.1 in Chapter 2, RQ3.1 in
+% Chapter 3, etc.)
+\newenvironment{rqlist}{%
+    \begin{list}{}{%
+    \setlength{\leftmargin}{0em}%
+    \setlength{\labelwidth}{0em}%
+    \setlength{\labelsep}{0em}%
+    \setlength{\itemindent}{0em}%
+    \setlength{\listparindent}{0em}%
+    \setlength{\rightmargin}{0em}%
+    \setlength{\itemsep}{0.75em}%
+    \setlength{\parsep}{0em}%
+    }%
+  }{%
+    \end{list}%
+}
+
+% Command for RQ items with automatic chapter numbering
+% Usage: \rqitem{1}{Question text}
+% In Chapter 2, produces: RQ2.1: Question text
+\newcommand{\rqitem}[2]{%
+    \item \textbf{RQ\thechapter.#1:} #2%
+}
+% If you prefer numbering offset by one (RQ1.x in Chapter 2, matching
+% "research question 1 is answered in chapter 2"), use this instead:
+% \newcommand{\rqitem}[2]{%
+%     \item \textbf{RQ\number\numexpr\thechapter-1\relax.#1:} #2%
+% }
+% ===== END RESEARCH QUESTION NUMBERING SYSTEM =====
+
+
+% Code formatting command (usable across multiple chapters)
+\newcommand{\code}[1]{{\small\ttfamily\texttt{#1}}}
+
+% END

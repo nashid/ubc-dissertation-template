@@ -1,0 +1,36 @@
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = main.tex
+
+\chapter{Introduction}
+\label{ch:introduction}
+
+Replace this text with your introduction.  A typical introduction
+motivates the problem area, identifies the gap in existing work,
+states the thesis statement, and previews the contributions of each
+research chapter~\citeeg{knuth1984literate}.
+
+\section{Motivation}
+
+Describe the problem your dissertation addresses and why it matters.
+Cite prior work with \verb|\citep{}| for parenthetical citations
+\citep{lamport1994latex} or \verb|\citet{}| for textual ones.
+
+\section{Thesis Statement and Research Questions}
+
+State your thesis in one or two sentences.  Then enumerate the
+high-level research questions.  The \env{researchquestions}
+environment (defined in \file{macros.tex}) numbers them globally:
+
+\begin{researchquestions}
+\item How can the first aspect of the problem be addressed?
+\item How effective is the proposed approach compared to the state of
+the art?
+\end{researchquestions}
+
+\section{Contributions and Organization}
+
+Summarize the contribution of each chapter and how the chapters fit
+together.  \autoref{chap:example-one} presents the first
+contribution.  \autoref{chap:example-two} presents the second
+contribution.  \autoref{ch:discussion} concludes the dissertation and
+discusses future directions.
