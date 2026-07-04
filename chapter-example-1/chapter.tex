@@ -1,0 +1,29 @@
+%% Example research chapter, structured for a manuscript-based
+%% dissertation: this chapter corresponds to one paper, and each
+%% section of the paper lives in its own file in this directory.
+%%
+%% To add a new chapter, copy this directory, adjust the \chapter
+%% title and \label, and update the \subimport lines and the
+%% corresponding \input in main.tex.
+
+% Chapter-specific commands.  Define macros used ONLY in this chapter
+% here; macros shared across chapters belong in macros.tex to avoid
+% "already defined" errors.
+\newcommand{\toolone}{\textsc{ToolOne}\xspace}
+
+\chapter{Title of Your First Research Chapter}
+\label{chap:example-one}
+
+% This chapter is based on:
+%   Your Name, Coauthor One, and Coauthor Two. "Title of the First
+%   Paper". Venue Name (VENUE 20XX).
+
+% \subimport (from the `import' package) is used instead of \input so
+% that relative paths inside the section files -- most importantly
+% \includegraphics{figures/...} -- resolve against this chapter's
+% directory rather than the repository root.
+\subimport{chapter-example-1/}{introduction}
+\subimport{chapter-example-1/}{approach}
+\subimport{chapter-example-1/}{evaluation}
+\subimport{chapter-example-1/}{related-work}
+\subimport{chapter-example-1/}{conclusion}
